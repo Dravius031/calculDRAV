@@ -144,32 +144,27 @@ function agreeForm(f) {
   }
  }
 
-desktopTemplates.addEventListener('click', function()  { 
-  if (desktopTemplates.checked) 
-  document.querySelector('.checkbox-label.desktopTemplates_value').textContent = "Да"; 
-  else 
-  document.querySelector('.checkbox-label.desktopTemplates_value').textContent = "Нет"; 
-  })
+function handlerCallBackForm(event) { 
 
-  adapt.addEventListener('click', function()  { 
-  if (adapt.checked) 
-  document.querySelector('.checkbox-label.adapt_value').textContent = "Да"; 
-  else 
-  document.querySelector('.checkbox-label.adapt_value').textContent = "Нет"; 
-  })
+if(event.target.classList.contains('want-faster')) { 
+event.target.checked ? showElem(fastRange) : hideElem(fastRange); 
+} 
 
-  mobileTemplates.addEventListener('click', function()  { 
-  if (mobileTemplates.checked) 
-  document.querySelector('.checkbox-label.mobileTemplates_value').textContent = "Да"; 
-  else 
-  document.querySelector('.checkbox-label.mobileTemplates_value').textContent = "Нет"; 
-  })
+if(event.target.classList.contains('calc-handler')) { 
+priceCalculation(event.target); 
+//event.target.id 
+if(event.target.classList.contains('css-radio')) { 
+for (const item of formCalculate.elements) { 
+if (item.type === 'checkbox') { document.querySelector('.checkbox-label.'+item.id+'_value').textContent = "Нет"; } 
+} 
+} 
+if(event.target.id === 'adapt') {document.querySelector('.checkbox-label.mobileTemplates_value').textContent = "Нет";}; 
+if(event.target.checked) 
+{document.querySelector('.checkbox-label.'+event.target.id+'_value').textContent = "Да";} 
+else 
+{document.querySelector('.checkbox-label.'+event.target.id+'_value').textContent = "Нет";} 
+} 
 
-  editable.addEventListener('click', function()  { 
-  if (editable.checked) 
-  document.querySelector('.checkbox-label.editable_value').textContent = "Да"; 
-  else 
-  document.querySelector('.checkbox-label.editable_value').textContent = "Нет"; 
-  })
+}
 
 formCalculate.addEventListener('change', handlerCallBackForm);
